@@ -1,0 +1,43 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!--
+    /   Shahala: Free Template by FreeHTML5.co
+    /   Author: https://freehtml5.co
+    /   Facebook: https://facebook.com/fh5co
+    /   Twitter: https://twitter.com/fh5co
+    -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static "assets/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+        <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        
+    <title>DhadingStory</title>
+
+</head>
+
+<body>
+   
+
+    {% include "base/header.html" %}
+    {% include "base/side-bar.html" %}
+    {% block body %}
+    {% endblock body %}
+
+    {% include "base/footer.html" %}
+    
+
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+
+
+{% block body %}
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Main extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    articleData: [],
+                    articlesToShow: 5,
+                };
+            }
+
+            handleSeeMoreClick = () => {
+                // Increase the number of articles to display when "See More" is clicked
+                this.setState((prevState) => ({
+                    articlesToShow: prevState.articlesToShow + 5, // Display 5 more articles
+                }));
+            }
+
+            toggleContent = (index) => {
+                const { articleData } = this.state;
+                articleData[index].expanded = !articleData[index].expanded;
+                this.setState({ articleData });
+            }
+
+            componentDidMount() {
+                const query_request = `query {
+                    allArticles {
+                        id
+                        title
+                        content
+                        pubDate
+                        category {
+                            name
+                        }
+                        author {
+                            name
+                            email
+                        }
+                    }
+                }`;
+
+                fetch('/graphql', {
+                    method: 'POST',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify({
+                        query: query_request,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Initialize 'expanded' property for each article
+                        const articles = data.data.allArticles.map((article) => ({
+                            ...article,
+                            expanded: false,
+                        }));
+                        this.setState({ articleData: articles });
+                    })
+            }
+
+            render() {
+                const { articlesToShow, articleData } = this.state;
+
+                return (
+                    <div>
+                 
+                        {articleData.slice(0, articlesToShow).map((article, index) => (
+                            <div key={article.id} className="card-container">
+                                <h5>{article.title}</h5>
+                                <p>
+                                    {article.expanded ? article.content : `${article.content.slice(0, 200)}... `}
+                                    <a href="#" onClick={() => this.toggleContent(index)}>
+                                        {article.expanded ? 'See Less' : 'See More'}
+                                    </a>
+                                </p>
+                                <p><strong>Author</strong> {article.author.name}</p>
+                                <p><strong>Publish Date:</strong> {article.pubDate}</p>
+                            </div>
+                        ))}
+                        {articlesToShow < articleData.length && (
+                            <button onClick={this.handleSeeMoreClick}>See More</button>
+                        )}
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Main />, document.getElementById('root'));
+    </script>
+</body>
+{% endblock %}

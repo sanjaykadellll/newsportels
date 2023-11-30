@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+{% include "base/home/head.html" %}
+
+<body class="article-pg">
+    <header class="mt-0 pt-0">
+        {% include "base/home/header.html" %}
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-9 pr-5">
+                {% block body %}
+                <div id="article-container">
+                    <h5>{{ article.title }}</h5>
+
+                    {% if article.image %}
+                    <img src="{{ article.image.url }}" class="mt-2" alt="" />
+                    {% else %}
+                    <!-- Handle case when there is no image -->
+                    {% endif %}
+
+                    <p>{{ article.content }}</p>
+                    <p><strong>Author:</strong> {{ article.author.name }}</p>
+                    <p><strong>Publish Date:</strong> {{ article.pub_date }}</p>
+                    {% include "base/article/comment_form.html" %}
+                    {% include "base/article/comments.html" %}
+                </div>
+                {% endblock %}
+            </div>
+
+         {% include "base/home/sidebar.html" %}
+        </div>
+    </div>
+
+    {% include "base/home/footer.html" %}
+
+    <script src="{% static "base/js/popper.min.js "%}"></script>
+    <script src="{% static "base/js/jquery-1.12.0.min.js"%}"></script>
+    <script src="{% static "base/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "base/js/owl.carousel.min.js" %}"></script>
+    <script src="{% static "base/js/jquery.yu2fvl.js"%}"></script>
+    <script src="{% static "base/js/main.js" %}"></script>
+
+</body>
+
+</html>

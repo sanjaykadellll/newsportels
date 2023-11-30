@@ -1,0 +1,60 @@
+{% load static %}
+<div class="row ml-0 mr-0">
+    <div class="col-md-6 pr-0">
+        <div class="card">
+            <img class="card-img" src="{% static "base/images/R.png"%}" alt="">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column">
+                <p>blogs</p>
+                <hr />
+                <a href="{% url 'blogs' %}" class="btn">READ MORE</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 pl-0">
+        <div class="card">
+            <img class="card-img" src="{% static "base/images/right-img.jpg"%}" alt="">
+            <div class="card-img-overlay d-flex align-items-center justify-content-center flex-column">
+                <p>Sports</p>
+                <hr />
+                <h2>Nepal quilify to world cup 2024 </h2>
+                <a href="{% url 'sports' %}" class="btn">READ MORE</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 pr-0 first">
+        <div class="card">
+            <img class="card-img" src="{% static "base/images/architecture.png"%}" alt="">
+            <div class="card-img-overlay">
+                <h5>Art</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 pl-0 pr-0">
+        <div class="card">
+            <img class="card-img" src="{% static "base/images/P.jpg"%}" alt="">
+            <div class="card-img-overlay">
+                <h5>Politices</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 pl-0 pr-0">
+        <div class="card">
+            <img class="card-img" src="{% static "base/images/food.png"%}" alt="">
+            <div class="card-img-overlay">
+                <h5>Tech</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 pl-0 last">
+        <div class="card">
+            <img class="card-img" src="{% static "base/images/travel.png"%}" alt="">
+            <div class="card-img-overlay">
+                <h5>Ad</h5>
+            </div>
+        </div>
+    </div>
+</div>

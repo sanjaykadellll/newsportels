@@ -1,0 +1,91 @@
+{% extends "base/home/index.html" %}
+{% load static %}
+ 
+ {% block main_content %}
+ <body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Main extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    articleData: [], // Assuming this gets populated somewhere in your code
+                    articlesToShow: 3,
+                    showFullContent: false, // Added state for showing full content
+                };
+            }
+
+
+        
+            {% include "base/gql-fn.js" %}        
+            {% include "base/fn.js" %}
+            
+
+
+            renderArticleCard(article, index) {
+                const { showFullContent } = this.state;
+
+                return (
+                    <div key={article.id} className="new-card-container">
+                        <h5>{article.title}</h5>
+                        
+                        <img src={`/${article.image}`} className="mt-2" alt="" />
+                        
+                        <p>
+                            {showFullContent ? article.content : `${article.content.slice(0, 481)}...`}
+                            {!showFullContent && (
+                                <a href={`/article/${article.id}`}>
+                                    See More
+                                </a>
+                            )}
+                        </p>
+                        <p><strong>Author:</strong> {article.author.name}</p>
+                      </div>
+                );
+            }
+
+            handleSeeMoreClick = () => {
+                this.setState((prevState) => ({
+                    articlesToShow: prevState.articlesToShow + 3,
+                }));
+            };
+
+            handleSeeLessClick = () => {
+                this.setState((prevState) => ({
+                    articlesToShow: Math.max(prevState.articlesToShow - 3, 3),
+                }));
+            };
+
+            render() {
+                const { articlesToShow, articleData } = this.state;
+
+                return (
+                    <div>
+                        <h1>BREAKING NEWS</h1>
+                        {articleData.slice(0, articlesToShow).map((article, index) => (
+                            this.renderArticleCard(article, index)
+                        ))}
+
+                        {articleData.length > articlesToShow && (
+                            <div className="col-md-10 text-center">
+                            <button onClick={this.handleSeeMoreClick} className="button">
+                                LOAD MORE
+                            </button>
+                            </div>
+                        )}
+
+                        {articlesToShow > 3 && (
+                            <div className="col-md-10 text-center">
+                            <button onClick={this.handleSeeLessClick} className="button">
+                                See Less
+                            </button>
+                        </div>
+                        )}
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Main />, document.getElementById('root'));
+    </script>
+</body> {% endblock %}

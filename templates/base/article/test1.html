@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
@@ -16,27 +17,46 @@
     <link rel="stylesheet" href="{% static "base/css/bootstrap.min.css"%}">
     <link rel="stylesheet" href="{% static "base/css/style.css" %}">
 
-    <title>NAME</title>
+    
+    <title>Shahala</title>
 </head>
+{% block main_content %}{% endblock %}
 
-<body>
+<body class="article-pg">
     <header class="mt-0 pt-0">
-       {% include "base/home/header.html" %}
-   
+    {% include "base/home/header.html" %}
     </header>
 
+    <div class="container-fluid ar-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 pr-5">
+                    {% block body %}{% endblock %}
+                    {% include "base/article/related_articles.html" %}
+                    
+                    {% include "base/article/comments.html" %}
+                    </div>
+                {% include "base/article/comment_form.html" %}
+     
+                </div>
 
-    {% block abc %}
-    {% endblock %}
-    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {% include "base/home/footer.html" %} 
+
+    {% include "base/home/footer.html" %}
+
     <script src="{% static "base/js/popper.min.js "%}"></script>
     <script src="{% static "base/js/jquery-1.12.0.min.js"%}"></script>
     <script src="{% static "base/js/bootstrap.min.js" %}"></script>
     <script src="{% static "base/js/owl.carousel.min.js" %}"></script>
     <script src="{% static "base/js/jquery.yu2fvl.js"%}"></script>
     <script src="{% static "base/js/main.js" %}"></script>
+
+    
 
 </body>
 

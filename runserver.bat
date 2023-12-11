@@ -1,6 +1,3 @@
-cd ..
 call env\Scripts\activate
-echo Changing directory to "new2"...
-cd new2
 echo Starting the Django development server...
 python manage.py runserver 8001

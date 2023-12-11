@@ -26,9 +26,11 @@
                 const { showFullContent } = this.state;
 
                 return (
-                    <div key={article.id} className="new-card-container">
+                    
+                    <div key={article.id} className="main-content" >
+                        <div className="line"></div>
                         <h5>{article.title}</h5>
-                        
+                        <div className="line"></div>
                         <img src={`/${article.image}`} className="mt-2" alt="" />
                         
                         <p>
@@ -40,7 +42,8 @@
                             )}
                         </p>
                         <p><strong>Author:</strong> {article.author.name}</p>
-                      </div>
+                    </div>
+                    
                 );
             }
 
@@ -60,7 +63,7 @@
                 const { articlesToShow, articleData } = this.state;
 
                 return (
-                    <div>
+                    <div className="new-card-container">
                         <h1>BREAKING NEWS</h1>
                         {articleData.slice(0, articlesToShow).map((article, index) => (
                             this.renderArticleCard(article, index)

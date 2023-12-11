@@ -1,74 +1,127 @@
+@font-face {
+  font-family: "Angeline_Vintage";
+  src: url(../fonts/Angeline_Vintage.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url(../fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Roboto-Italic";
+  src: url(../fonts/Roboto-Italic.ttf);
+}
+
+.head-btn{
+  background-color:transparent;
+  color:white;
+}
+
+.main-content {
+  
+  max-width: 90%;
+  margin: 0 auto; /* Center the container */
+  margin-left: 20px; /* Move the container 20px to the left instead of 300px */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+}
+.line {
+  width: 100%; /* Adjust the width as needed */
+  height: 2px; /* Adjust the height as needed */
+  background-color: #000; /* Adjust the color as needed */
+  /* Add other styles as needed */
+}
+
 .new-card-container {
-    max-width: 50%;
-    margin: 0 auto; /* Center the container */
-  margin-left: 300px; /* Move the container 20px to the left */
+  max-width: 60%;
+  margin: 0 auto; /* Center the container */
+  margin-left: 20px; /* Move the container 20px to the left instead of 300px */
   padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .new-card-container h5 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .new-card-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .new-card-container p {
-    margin: 10px 0;
-  }
-  
-  .new-card-container strong {
-    font-weight: bold;
-  }
-  
-  .images{
-    height:600px;
-    width:600px;
-  }
-  .button {
-    background-color: #04AA6D; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  text-align: center; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-card-container h5 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.new-card-container img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.new-card-container p {
+  font-family: "Montserrat-Bold";
+  margin: 10px 0;
+}
+
+.new-card-container strong {
+  font-weight: bold;
+}
+
+.images {
+  height: 600px;
+  width: 600px;
+}
+
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 .button:hover {
-    background-color: #357ae8; /* Change this to your desired hover color */
-    color:rgb(241, 236, 236); /* Change this to your desired hover text color */
-    /* You can add additional styles for the hover state if needed */
-}
-#article-container {
-  max-width: 50%; /* Adjust the maximum width according to your design */
-  margin: 0 auto; /* Center the container */
-  margin-left: 300px; /* Move the container 20px to the left */
-  padding: 20px; /* Add some padding for spacing */
-  background-color: #f8f8f8; /* Add a light background color */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  background-color: #357ae8;
+  color: rgb(241, 236, 236);
 }
 
-/* Rest of the styles remain unchanged */
+#article-container {
+  max-width: 100%;
+  margin: 0 auto;
+  margin-left: 20px; /* Move the container 20px to the left instead of 300px */
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 #article-container h5 {
-  color: #333; /* Set the heading color */
+  color: #333;
 }
 
 #article-container p {
-  line-height: 1.6; /* Adjust line height for better readability */
-  margin-bottom: 15px; /* Add spacing between paragraphs */
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 #article-container img {
-  max-width: 100%; /* Ensure images don't exceed the container width */
-  height: auto; /* Maintain aspect ratio for images */
+  max-width: 100%;
+  height: auto;
 }
 
+
+.article-card-container{
+  max-width: 100%;
+  margin: 0 auto; /* Center the container */
+  margin-left: 20px; /* Move the container 20px to the left instead of 300px */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+}

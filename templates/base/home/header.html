@@ -1,8 +1,8 @@
 {% load static %}
 
     <div class="bg-cover clearfix pt-3">
-        <h2 class="logo">NAME(LOGO)</h2>
-        <nav class="nav nav-fill mx-auto">
+        <h2 id="head-logo" class="logo">NAME(LOGO)</h2>
+                <nav class="nav nav-fill mx-auto">
             <li class="nav-item">
                 <a class="nav-link" href="https://facebook.com/fh5co" target="_blank"><i
                         class="fab fa-facebook-f"></i></a>
@@ -35,23 +35,28 @@
                 <div id="my-nav" class="collapse navbar-collapse">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">NEWS</a>
+                            <a data-translate="news" class="nav-link" href="{% url 'home' %}">NEWS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'sports' %}">SPORTS</a>
+                            <a data-translate="sports" class="nav-link" href="{% url 'sports' %}">SPORTS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blogs' %}">BLOGS</a>
+                            <a data-translate="blogs" class="nav-link" href="{% url 'blogs' %}">BLOGS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">TECH</a>
+                            <a data-translate="tech" class="nav-link" href="#">TECH</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">LIFE</a>
+                            <a data-translate="life" class="nav-link" href="#">LIFE</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">OPINION</a>
+                            <a data-translate="opinion" class="nav-link" href="#">OPINION</a>
                         </li>
+                        <li class="nav-item">
+                            <button class="head-btn" onclick="setLanguage('en')">English</button>
+                            <button class="head-btn" onclick="setLanguage('np')">नेपाली</button>
+                        </li>
+                        
                         <li class="nav-item">
                             <form action="" method="POST">
                                 <div class="input-group mt-0 mx-auto" style="width:16px;">

@@ -2,7 +2,7 @@
 {% extends "base/article/article.html" %}
 {% load static %}
 
-{% block body %}
+{% block content1 %}
     <body>
         <div id="root"></div>
         <script type="text/babel">
@@ -31,8 +31,8 @@
                         <p>
                             {showFullContent ? article.content : `${article.content.slice(0, 481)}...`}
                             {!showFullContent && (
-                                <a href={`/article/${article.id}`}>
-                                    See More
+                                <a href={`/index/${article.id}`}>
+                                    See Moreee
                                 </a>
                             )}
                         </p>

@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+{% include "base/home/head.html" %}
+
+<body>
+    <header class="mt-0 pt-0">
+    {% include "base/home/header.html" %} 
+    
+    {% block head %}
+    {% endblock head %}
+  
+</header>
+
+            {% block content1 %}
+
+
+            {% endblock content1 %}
+
+    {% include "base/home/footer.html" %} 
+
+
+</body>
+
+</html>

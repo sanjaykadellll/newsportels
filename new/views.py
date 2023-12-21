@@ -7,6 +7,10 @@ from app1.models import Article
 def body(request):
 	return render(request,"base/body.html")
 
+def base(request):
+	return render(request,"base/home/base.html")
+
+
 def home(request):
 	return render(request,"base/article/home.html")
 

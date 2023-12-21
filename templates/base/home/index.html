@@ -1,29 +1,15 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
+{% extends 'base/home/base.html' %}
 
-{% include "base/home/head.html" %}
-
-<body>
-    <header class="mt-0 pt-0">
-       {% include "base/home/header.html" %}
-        {% include "base/home/hero.html" %} 
-
-    </header>
-
+{% block head %}
+    {% include "base/home/hero.html" %} 
+{% endblock %}
   
-            {% block main_content %}
+{% block content1 %}
+         
 
-
-
-            {% endblock %}
-
+{% endblock content1 %}
 
     {% include "base/home/latest_slide.html" %}
 
-    {% include "base/home/footer.html" %} 
 
 
-</body>
-
-</html>

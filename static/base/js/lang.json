@@ -1,0 +1,23 @@
+{
+    "en": {
+      "title": "NAME",
+      "head": "NAME LOGO",
+      "news": "NEWS",
+      "sports": "SPORTS",
+      "blogs": "BLOGS",
+      "tech": "TECH",
+      "life": "LIFE",
+      "opinion": "OPINION"
+    },
+    "np": {
+      "title": "नाम",
+      "head": "नाम लोगो",
+      "news": "समाचार",
+      "sports": "खेलकुद",
+      "blogs": "ब्लगहरू",
+      "tech": "प्रविधि",
+      "life": "जीवन",
+      "opinion": "प्रतिक्रिया"
+    }
+}
+  

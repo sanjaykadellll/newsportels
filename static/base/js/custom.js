@@ -22,7 +22,6 @@ const translations = {
     // Add more languages as needed
   };
   
-  let currentLanguage = localStorage.getItem('selectedLanguage') || 'np';
   
   function setLanguage(language) {
     if (translations[language]) {
@@ -34,6 +33,8 @@ const translations = {
     }
   }
   
+  let currentLanguage = localStorage.getItem('selectedLanguage') || 'np';
+
   function updateContent() {
     // Update title and head-logo
     document.getElementById('title').textContent = translations[currentLanguage].title;
@@ -49,5 +50,5 @@ const translations = {
   }
   
   // Initial content update
-  updateContent();
+  // updateContent();
   

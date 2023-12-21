@@ -8,7 +8,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path('', views.home, name="home"),
+    path('', views.base, name="base"),
+    path('home', views.home, name="home"),
     path('about/', views.about, name='about'),
     path('blog/', views.blogs, name='blogs'),
     path('sports/', views.sports, name='sports'),

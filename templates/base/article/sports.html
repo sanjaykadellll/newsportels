@@ -2,7 +2,7 @@
 {% extends "base/article/article.html" %}
 {% load static %}
 
-{% block body %}
+{% block content1 %}
     <body>
         <div id="root"></div>
         <script type="text/babel">
@@ -31,7 +31,7 @@
                         <p>
                             {showFullContent ? article.content : `${article.content.slice(0, 481)}...`}
                             {!showFullContent && (
-                                <a href={`/article/${article.id}`}>
+                                <a href={`/base/${article.id}`}>
                                     See More
                                 </a>
                             )}
@@ -46,7 +46,6 @@
 
                     return (
                         <div>
-                            
                             {articleData.slice(1, articlesToShow).map((article, index) => {
                                 // Check if the article belongs to the "blogs" category
                                 if (article.category && article.category.name === 'sports') {
@@ -55,6 +54,7 @@
                                     return null; // Skip articles that are not in the "blogs" category
                                 }
                             })}
+
                             {articleData.length > articlesToShow && (
                                 <div className="col-md-10 text-center">
                                 <button onClick={this.handleSeeMoreClick} className="button">
@@ -69,9 +69,10 @@
                                     See Less
                                 </button>
                             </div>
-                            )}                            )}
-    
-                        
+                            )}
+
+                        )}
+
                         </div>
                     );
                 }

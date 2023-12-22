@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .model_app1 import *
+from .models import *
 from django.core.checks import register
 
 

@@ -2,19 +2,6 @@ import graphene
 from .models import *
 from .model_app1_schema import *
 
-# class Query(graphene.ObjectType):
-#     Employers = graphene.List(EmployerType)
-
-#     def resolve_Employers(self, info, **kwargs):
-#         return Employer.objects.all()
-
-# class Mutation(graphene.ObjectType):
-#     create_employer = Create_EmployerMutation.Field()
-#     update_employer = Update_EmployerMutation.Field()
-#     delete_employer = Delete_EmployerMutation.Field()
-#     save_employer   =  Save_EmployerMutation.Field()
-
-# schema = graphene.Schema(query=Query, mutation=Mutation)
 class Query(ObjectType):
     all_categories = graphene.List(CategoryType)
     all_authors = graphene.List(AuthorType)

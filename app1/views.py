@@ -6,6 +6,10 @@ from django.shortcuts import render , get_object_or_404
 
 # Create your views here.
 
+def test(request):
+	return render(request,"base/test/curd.html")
+
+
 def body(request):
 	return render(request,"base/body.html")
 

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static "base/css/custom-styles.css" %}">
+
+    <title id='title'>NAME</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Main extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    authorId: 1,
+                    categoryId: 3,
+                    title: "",
+                    content: "",
+                    articleData: [], // Initialize articleData
+                };
+                this.handleApiCreateArticle = this.handleApiCreateArticle.bind(this);
+                this.handleHumanInputChange = this.handleHumanInputChange.bind(this);
+            }
+
+            componentDidMount() {
+                console.log("componentDidMount", this.state);
+            }
+
+            handleApiCreateArticle() {
+                // Add logic to send data to your API for creating an article
+                // Example: You can use fetch or another library for API requests
+                console.log("Article created:", this.state);
+            }
+
+            handleHumanInputChange(event) {
+                const { name, value } = event.target;
+                this.setState({
+                    [name]: value,
+                });
+            }
+
+            render() {
+                const { title, content, articleData } = this.state;
+                console.log(title)
+
+                return (
+                    <div>
+                        <h2>okkkkkkkkkk</h2>
+                        {/* Render your form */}
+                        <form>
+                            <label>
+                                Title:
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={title}
+                                    onChange={this.handleHumanInputChange}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Content:
+                                <textarea
+                                    name="content"
+                                    value={content}
+                                    onChange={this.handleHumanInputChange}
+                                />
+                            </label>
+                            <br />
+                            <button type="button" onClick={this.handleApiCreateArticle}>
+                                Create Article
+                            </button>
+                        </form>
+
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Main />, document.getElementById('root'));
+    </script>
+</body>
+</html>

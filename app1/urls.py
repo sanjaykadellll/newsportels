@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('react/', views.react, name="react"),
     path('base/', views.base, name="base"),
     path('test', views.test, name="base"),
     path('', views.home, name="home"),

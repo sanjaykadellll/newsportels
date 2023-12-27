@@ -1,0 +1,88 @@
+
+{% load allauth i18n %}
+
+    <div class="signup-container">
+        <h1>{% trans "Sign Up" %}</h1>
+        <p>{% blocktrans %}Already Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+        
+        {% url 'account_signup' as action_url %}
+        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+            {% slot body %}
+                {% csrf_token %}
+                {% element fields form=form unlabeled=True %}
+                {% endelement %}
+                {% if redirect_field_value %}
+                    <input type="hidden"
+                        name="{{ redirect_field_name }}"
+                        value="{{ redirect_field_value }}" />
+                {% endif %}
+            {% endslot %}
+            
+            {% slot actions %}
+                <button class="btn-prominent btn-signup" type="submit">
+                    {% trans "Sign Up" %}
+                </button>
+            {% endslot %}
+        {% endelement %}
+
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+    </div>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+        }
+
+        .signup-container {
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .signup-container h1 {
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .btn-prominent {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-prominent:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            margin: 15px 0;
+            color: #888;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>

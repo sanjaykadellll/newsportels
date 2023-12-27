@@ -1,9 +1,9 @@
-# from django.shortcuts import render
+from django.shortcuts import render
 
 
-# def login(request):
-# 	return render(request,"accounts/login.html")
+def login(request):
+	return render(request,"account/login.html")
 
 
-# def signup(request):
-# 	return render(request,"accounts/signup.html")
+def signup(request):
+	return render(request,"account/signup.html")

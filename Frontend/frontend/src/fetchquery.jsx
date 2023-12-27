@@ -1,7 +1,7 @@
 // fetchArticles.jsx
 const fetchArticles = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/graphql', {
+      const response = await fetch('http://127.0.0.1:8001/graphql', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',

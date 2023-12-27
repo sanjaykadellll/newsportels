@@ -185,7 +185,12 @@ const Navbar = () => {
         </div>
       </header>
     </>
+<<<<<<< HEAD
   );
 }
+=======
+  ); 
+};
+>>>>>>> 6a20e987d76b8c21d28d0657faefed914e1116ac
 
 export default Navbar

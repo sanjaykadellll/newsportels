@@ -3,6 +3,9 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
 media
+<<<<<<< HEAD
 migrations/
+=======
+migrations/
+>>>>>>> 6a20e987d76b8c21d28d0657faefed914e1116ac

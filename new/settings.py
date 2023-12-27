@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-k13!kqzxdefdbpu=$9w60xx)9pnfphgu11v3x5bwcs(sztg_++
 DEBUG = True
 
 ALLOWED_HOSTS = []
+SITE_ID = 1
 
 
 # Application definition
@@ -37,9 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'app1',
+    'user',
     'graphene_django',
     'corsheaders',
+    
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    
 ]
 
 MIDDLEWARE = [
@@ -50,11 +59,25 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'corsheaders.middleware.CorsMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
     
 ]
-# settings.py
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
 
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
@@ -62,6 +85,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'new.urls'
+
+LOGIN_REDIRECT_URL ='/'
 
 TEMPLATES = [
     {
@@ -75,11 +100,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                  'django.template.context_processors.request',
             ],
         },
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 WSGI_APPLICATION = 'new.wsgi.application'
 
 

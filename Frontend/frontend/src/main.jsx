@@ -6,51 +6,51 @@ import App from './App.jsx';
 import fetchArticles from "./fetchquery.jsx";
 
 
-const MyComponent = () => {
-  const [articleData, setArticleData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// const MyComponent = () => {
+//   const [articleData, setArticleData] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const articles = await fetchArticles();
-        setArticleData(articles);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const articles = await fetchArticles();
+//         setArticleData(articles);
+//         setLoading(false);
+//       } catch (error) {
+//         setError(error);
+//         setLoading(false);
+//       }
+//     };
 
-    fetchData();
-  }, []);
+//     fetchData();
+//   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
 
-  if (error) {
-    return <div>Error loading data: {error.message}</div>;
-  }
+//   if (error) {
+//     return <div>Error loading data: {error.message}</div>;
+//   }
 
-  return (
-    <div className="container">
-      <h1>Article List</h1>
-      <div className="article-list">
-        {articleData.map((article) => (
-          <div key={article.id} className="article-item">
-            <h2>{article.title}</h2>
-            <img src={article.image} alt={article.title} />
-            <p>{article.content}</p>
-            <p>Author: {article.author.name} ({article.author.email})</p>
-            <p>Category: {article.category.name}</p>
-            <p>Published on: {article.pubDate}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className="container">
+//       <h1>Article List</h1>
+//       <div className="article-list">
+//         {articleData.map((article) => (
+//           <div key={article.id} className="article-item">
+//             <h2>{article.title}</h2>
+//             <img src={article.image} alt={article.title} />
+//             <p>{article.content}</p>
+//             <p>Author: {article.author.name} ({article.author.email})</p>
+//             <p>Category: {article.category.name}</p>
+//             <p>Published on: {article.pubDate}</p>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
-createRoot(document.getElementById('root')).render(<MyComponent />);
+createRoot(document.getElementById('root')).render(<App />);

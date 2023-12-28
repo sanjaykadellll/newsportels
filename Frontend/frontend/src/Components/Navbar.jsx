@@ -2,7 +2,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <>
+    <>     <header className="mt-0 pt-0">
       <div className="bg-cover clearfix pt-3">
         <h2 id="head-logo" className="logo">
           NAME(LOGO)
@@ -154,6 +154,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      </header>
     </>
   );
 };

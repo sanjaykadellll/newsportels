@@ -1,6 +1,7 @@
 import graphene
 from graphene_django.types import DjangoObjectType, ObjectType
-from .models import Category, Author, Article
+from .models import *
+from .model_app1_service import *
 
 # Define GraphQL types for your models
 class CategoryType(DjangoObjectType):
@@ -40,6 +41,7 @@ class CreateCategory(graphene.Mutation):
 
     def mutate(self, info, data):
         category = Category(**data)
+        createService()
         category.save()
         return CreateCategory(category=category)
 

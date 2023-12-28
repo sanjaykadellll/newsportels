@@ -1,3 +1,13 @@
+from .models import *
+
+def createService(**kwargs):
+    aaaa=")0)))))))))))))))))))))))))))))))))))))))))"
+    print("000000000000000000000000000000000000",aaaa)
+    return aaaa
+
+
+
+
 # from .model_app1 import *
 
 

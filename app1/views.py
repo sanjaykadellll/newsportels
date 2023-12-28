@@ -5,6 +5,13 @@ from django.shortcuts import render , get_object_or_404
 
 
 # Create your views here.
+# def react(request):
+# 	return render(request,"index.html")
+
+
+def test(request):
+	return render(request,"base/test/curd.html")
+
 
 def body(request):
 	return render(request,"base/body.html")

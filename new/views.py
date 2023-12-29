@@ -1,9 +1,8 @@
 from django.shortcuts import render
 
 
-def login(request):
-	return render(request,"account/login.html")
+def mainpage(request):
+	return render(request,"account/base.html")
 
 
-def signup(request):
-	return render(request,"account/signup.html")
+

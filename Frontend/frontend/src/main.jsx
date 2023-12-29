@@ -3,54 +3,54 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
-import fetchArticles from "./fetchquery.jsx";
 
 
-const MyComponent = () => {
-  const [articleData, setArticleData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const articles = await fetchArticles();
-        setArticleData(articles);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
+// const MyComponent = () => {
+//   const [articleData, setArticleData] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
 
-    fetchData();
-  }, []);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const articles = await fetchArticles();
+//         setArticleData(articles);
+//         setLoading(false);
+//       } catch (error) {
+//         setError(error);
+//         setLoading(false);
+//       }
+//     };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+//     fetchData();
+//   }, []);
 
-  if (error) {
-    return <div>Error loading data: {error.message}</div>;
-  }
+//   if (loading) {
+//     return <div>Loading...</div>;
+//   }
 
-  return (
-    <div className="container">
-      <h1>Article List</h1>
-      <div className="article-list">
-        {articleData.map((article) => (
-          <div key={article.id} className="article-item">
-            <h2>{article.title}</h2>
-            <img src={article.image} alt={article.title} />
-            <p>{article.content}</p>
-            <p>Author: {article.author.name} ({article.author.email})</p>
-            <p>Category: {article.category.name}</p>
-            <p>Published on: {article.pubDate}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+//   if (error) {
+//     return <div>Error loading data: {error.message}</div>;
+//   }
 
-createRoot(document.getElementById('root')).render(<MyComponent />);
+//   return (
+//     <div className="container">
+//       <h1>Article List</h1>
+//       <div className="article-list">
+//         {articleData.map((article) => (
+//           <div key={article.id} className="article-item">
+//             <h2>{article.title}</h2>
+//             <img src={article.image} alt={article.title} />
+//             <p>{article.content}</p>
+//             <p>Author: {article.author.name} ({article.author.email})</p>
+//             <p>Category: {article.category.name}</p>
+//             <p>Published on: {article.pubDate}</p>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+createRoot(document.getElementById('root')).render(<App />);

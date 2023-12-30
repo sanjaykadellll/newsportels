@@ -14,5 +14,6 @@ urlpatterns = [
     path('app1', include('app1.urls')), 
     path('account/', include('allauth.urls')),
     path('', views.mainpage, name='mainpage'),
+    path('', views.login, name='login'),
 
 ] 

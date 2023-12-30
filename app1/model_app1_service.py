@@ -1,10 +1,8 @@
 from .models import *
 
-def createService(**kwargs):
-    aaaa=")0)))))))))))))))))))))))))))))))))))))))))"
-    print("000000000000000000000000000000000000",aaaa)
-    return aaaa
-
+def createService(**data):
+    # Replace this placeholder code with the actual implementation
+    print("Creating service with data:", data)
 
 
 

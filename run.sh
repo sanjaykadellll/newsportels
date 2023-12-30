@@ -1,6 +1,6 @@
 current_dir=$(pwd)
 
-cd "G:/final/new2"
+cd "C:\Users\neschal\Desktop\React\Internship\newsportels"
 
 echo "...............activating++++++++++++virtual++++++++++++ env...................."
 . env/Scripts/activate

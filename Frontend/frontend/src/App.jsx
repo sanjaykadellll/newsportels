@@ -15,6 +15,11 @@ function App() {
 
   return (
     <>
+    <BrowserRouter>
+    
+    </BrowserRouter>
+
+
       <Navbar />
       <Home />
       <Hero />

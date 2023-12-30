@@ -6,6 +6,7 @@ echo "...............activating++++++++++++virtual++++++++++++ env..............
 
 python manage.py runserver 8001  &
 
+
 django_pid=$!
 
 cd "Frontend/frontend"

@@ -62,17 +62,26 @@ header .card a, .vr-gallery a.btn {
     color: #03133a; }
 
 header {
+<<<<<<< HEAD
   background-image: url(../images/home-bg.png);
+=======
+ 
+>>>>>>> nischal
   text-align: center;
   padding: 20px 0;
   padding-bottom: 50px; }
   header .bg-cover {
+<<<<<<< HEAD
     background: rgba(0, 0, 0, 0.7); }
+=======
+    background: rgba(240, 236, 236, 0.7); }
+>>>>>>> nischal
   header .input-group input {
     display: none; }
   header h2.logo {
     font-size: 75px;
     font-family: "Angeline_Vintage";
+<<<<<<< HEAD
     color: #ffffff; }
   header .nav-fill {
     max-width: 250px; }
@@ -82,6 +91,21 @@ header {
       color: #03133a; }
   header .navbar li.nav-item a.nav-link {
     font-family: "Montserrat-Bold";
+=======
+    color: #d31b1b; }
+  header .nav-fill {
+    max-width: 250px; }
+    header .nav-fill a {
+      color: #0e0d0d; }
+    header .nav-fill li:hover a {
+      color: #03133a; }
+      header .navsbar{
+            background: black;
+      }
+  header .navbar li.nav-item a.nav-link {
+    font-family: "Montserrat-Bold";
+
+>>>>>>> nischal
     color: #ffffff;
     padding-right: 1.5rem;
     padding-left: 1.5rem; }
@@ -565,15 +589,15 @@ header {
       border-color: #06236a; }
 
 footer {
-  background-image: url(../images/home-bg.png); }
+  }
   footer h2.logo {
     font-size: 75px;
     font-family: "Angeline_Vintage";
-    color: #ffffff; }
+    color: #d13636; }
   footer .nav-fill {
     max-width: 250px; }
-    footer .nav-fill a {
-      color: #ffffff; }
+    footer .nav-fill .nav-item a{
+      color:rgb(20, 19, 19) }
     footer .nav-fill li:hover a {
       color: #03133a; }
   footer .copyright {

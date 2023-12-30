@@ -1,16 +1,90 @@
-
 {% load i18n %}
 {% load allauth account %}
 {% block head_title %}
-    {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #3498db, #2c3e50);
+    }
+
+    .signup-container {
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 40px;
+        border-radius: 10px;
+        width: 400px;
+        text-align: center;
+    }
+
+    .signup-container h1 {
+        color: #3498db;
+        margin-bottom: 20px;
+    }
+
+    .btn-prominent {
+        background-color: #3498db;
+        color: #fff;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-prominent:hover {
+        background-color: #2980b9;
+    }
+
+    p {
+        margin: 15px 0;
+        color: #888;
+    }
+
+    a {
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Updated styles for better aesthetics */
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .social-login {
+        margin-top: 20px;
+    }
+
+    .social-login img {
+        width: 40px;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+</style>
     <p>
-        {% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+        {% blocktrans %}
+    <a href="{{ signup_url }}">sign up</a> {% endblocktrans %}
     </p>
     {% url 'account_login' as login_url %}
     {% element form form=form method="post" action=login_url tags="entrance,login" %}
@@ -31,6 +105,8 @@
         {% endslot %}
     {% endelement %}
     {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        <div class="social-login">
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        </div>
     {% endif %}
 {% endblock content %}

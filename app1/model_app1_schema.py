@@ -40,8 +40,13 @@ class CreateCategory(graphene.Mutation):
     category = graphene.Field(CategoryType)
 
     def mutate(self, info, data):
+        print("hello")
+        # Assuming Category model is defined and imported
         category = Category(**data)
-        createService()
+        
+        # Assuming createService is a placeholder for some functionality
+        createService(**data)
+
         category.save()
         return CreateCategory(category=category)
 

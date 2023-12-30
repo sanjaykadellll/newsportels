@@ -3,6 +3,16 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
+    <div className="container-fluid jumbotron-fluid stay mt-5 pt-5 pb-5">
+        <h2 className="text-center">Stay Updated</h2>
+        <p className="text-center mt-2">Sign up for our newsletter to receive the latest news and event postings.</p>
+        <div className="input-group mt-4 mx-auto" style={{maxWidth: "640px"}}>
+            <input type="email" className="form-control" placeholder="YOUR EMAIL ADDRESS"/>
+            <div className="">
+                <button className="btn btn-success ml-2" type="submit">SIGN UP</button>
+            </div>
+        </div>
+    </div>
       <footer className="container-fluid pt-5">
         <div className="container">
           <h2 className="logo text-center">Shahala</h2>

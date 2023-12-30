@@ -44,16 +44,10 @@ const Navbar = () => {
 
           <input
             type="text"
-<<<<<<< HEAD
             id="nav-search"
             className="nav-search mx-auto form-control"
             name=""
           
-=======
-            id="nav-search  "
-            className=" form-control nav-search mx-auto"
-           
->>>>>>> nischal
           />
           <div className="ml-0 mr-0 pb-1">
             <nav className="navbar navbar-expand-md">
@@ -63,20 +57,13 @@ const Navbar = () => {
                 data-toggle="collapse"
                 aria-controls="my-nav"
                 aria-expanded="false"
-<<<<<<< HEAD
               
-=======
->>>>>>> nischal
                 aria-label="Toggle navigation"
               >
                 <span className="bar1"></span> <span className="bar2"></span>{" "}
                 <span className="bar3"></span>
               </button>
-<<<<<<< HEAD
               <div id="my-nav" className="collapse navbar-collapse">
-=======
-              <div id="my-nav" className=" navsbar collapse navbar-collapse">
->>>>>>> nischal
                 <ul className="navbar-nav mx-auto">
                   <li className="nav-item">
                     <a className="nav-link" href="article.html">
@@ -109,20 +96,8 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li className="nav-item">
-<<<<<<< HEAD
                     <form action="" method="POST">
                       <div className="input-group mt-0 mx-auto" style={{width:"16px"}}>
-=======
-                    <button className="  head-btn">Eng</button>
-                    <button className="  head-btn">नेपा</button>
-                  </li>
-                  <li className="nav-item">
-                    <form action="" method="POST">
-                      <div
-                        className="input-group mt-0 mx-auto"
-                        style={{ width: "16px" }}
-                      >
->>>>>>> nischal
                         <div className="">
                           <img
                             src="assets/images/search-icon.png"
@@ -139,7 +114,6 @@ const Navbar = () => {
             </nav>
           </div>
         </div>
-<<<<<<< HEAD
 
         <div className="row ml-0 mr-0">
           <div className="col-md-6 pr-0">
@@ -209,16 +183,9 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-=======
->>>>>>> nischal
       </header>
     </>
-<<<<<<< HEAD
   );
 }
-=======
-  ); 
-};
->>>>>>> 6a20e987d76b8c21d28d0657faefed914e1116ac
 
 export default Navbar

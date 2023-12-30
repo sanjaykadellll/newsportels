@@ -32,7 +32,6 @@ class ArticleInput(graphene.InputObjectType):
     author_id = graphene.Int()
     image = graphene.String()
 
-# Define GraphQL mutations
 class CreateCategory(graphene.Mutation):
     class Arguments:
         data = CategoryInput()
@@ -40,16 +39,11 @@ class CreateCategory(graphene.Mutation):
     category = graphene.Field(CategoryType)
 
     def mutate(self, info, data):
-        print("hello")
-        # Assuming Category model is defined and imported
         category = Category(**data)
-        
-        # Assuming createService is a placeholder for some functionality
         createService(**data)
-
         category.save()
         return CreateCategory(category=category)
-
+        
 class UpdateCategory(graphene.Mutation):
     class Arguments:
         id = graphene.Int()

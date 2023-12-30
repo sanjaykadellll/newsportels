@@ -1,0 +1,6 @@
+{% if request.user.is_authenticated %}
+  {% include "account/service.html" %}
+{% else %}
+  <button className="danger" ><a href="{% url 'account_login' %}"> Login </a></button>
+  <button className="danger" ><a href="{% url 'account_signup' %}"> signup </a></button>
+{% endif %}

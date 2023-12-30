@@ -9,10 +9,11 @@ from . import views
 
 
 urlpatterns = [
-    path('login/', views.login, name='login'),
-    path('signup/', views.signup, name='signup'),
     path('admin/', admin.site.urls),
     path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
-    path('', include('app1.urls')), 
-    path('accounts/', include('allauth.urls')),
+    path('app1', include('app1.urls')), 
+    path('account/', include('allauth.urls')),
+    path('', views.mainpage, name='mainpage'),
+    path('', views.login, name='login'),
+
 ] 

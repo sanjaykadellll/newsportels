@@ -4,14 +4,7 @@
 __pycache__/
 local_settings.py
 media
-<<<<<<< HEAD
 migrations/
-<<<<<<< HEAD
-=======
-migrations/
->>>>>>> 6a20e987d76b8c21d28d0657faefed914e1116ac
-=======
 run.sh/
 env/
 db.sqlite3
->>>>>>> nischal

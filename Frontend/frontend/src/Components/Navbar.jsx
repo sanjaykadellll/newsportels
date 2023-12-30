@@ -61,7 +61,7 @@ const Navbar = () => {
                 <span className="bar1"></span> <span className="bar2"></span>{" "}
                 <span className="bar3"></span>
               </button>
-              <div id="my-nav" className="collapse navbar-collapse">
+              <div id="my-nav" className=" navsbar collapse navbar-collapse">
                 <ul className="navbar-nav mx-auto">
                   <li className="nav-item">
                     <a className="nav-link" href="article.html">
@@ -94,8 +94,8 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <button className="head-btn">English</button>
-                    <button className="head-btn">नेपाली</button>
+                    <button className="  head-btn">Eng</button>
+                    <button className="  head-btn">नेपा</button>
                   </li>
                   <li className="nav-item">
                     <form action="" method="POST">

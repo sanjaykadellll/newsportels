@@ -1,87 +1,229 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL Fetch Example</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ececec;
+        }
 
-    <link rel="stylesheet" href="{% static "base/css/custom-styles.css" %}">
+        .styled-form {
+            max-width: 600px;
+            background-color: #f4f4f4;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
 
-    <title id='title'>NAME</title>
+        label {
+            display: block;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input:hover,
+        textarea:hover,
+        select:hover {
+            border-color: #4CAF50;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="root"></div>
+    
+ {% if request.user.is_authenticated %}
+   <button className="danger" ><a href="{% url 'account_logout' %}"> logout </a></button>
+{% endif %}
+   <div id="root"></div>
     <script type="text/babel">
         class Main extends React.Component {
             constructor(props) {
                 super(props);
                 this.state = {
-                    authorId: 1,
-                    categoryId: 3,
-                    title: "",
-                    content: "",
-                    articleData: [], // Initialize articleData
+                    articleData: [],
+                    showFullContent: false,
+                    title: '',
+                    content: '',
+                    image: '',
+                    categoryId: '',
+                    authorId: '',
                 };
-                this.handleApiCreateArticle = this.handleApiCreateArticle.bind(this);
-                this.handleHumanInputChange = this.handleHumanInputChange.bind(this);
+            }
+
+            async graphqlRequest(query, variables = {}) {
+                try {
+                    const response = await fetch('/graphql', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            query,
+                            variables,
+                        }),
+                    });
+
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('GraphQL Request Error:', error);
+                    throw error;
+                }
+            }
+
+            async fetchArticles() {
+                const query = `
+                    query {
+                        allArticles {
+                            id
+                            title
+                            content
+                            pubDate
+                            category {
+                                id
+                                name
+                            }
+                            author {
+                                name
+                                email
+                            }
+                            image
+                        }
+                    }
+                `;
+
+                try {
+                    const data = await this.graphqlRequest(query);
+                    console.log('Fetch Articles Response:', data);
+
+                    const articles = data.data.allArticles.map(article => ({
+                        ...article,
+                        expanded: false,
+                    }));
+
+                    // Process the articles as needed
+                    console.log('Processed Articles:', articles);
+                } catch (error) {
+                    console.error('Error fetching articles:', error);
+                }
             }
 
             componentDidMount() {
-                console.log("componentDidMount", this.state);
+                // Example usage
+                this.fetchArticles();
             }
 
-            handleApiCreateArticle() {
-                // Add logic to send data to your API for creating an article
-                // Example: You can use fetch or another library for API requests
-                console.log("Article created:", this.state);
+            async createArticle() {
+                const { title, content, image, categoryId, authorId } = this.state;
+
+                const mutation = `
+                    mutation CreateArticle($title: String!, $content: String!, $image: String!) {
+                        createArticle(data: {
+                            title: $title,
+                            content: $content,
+                            categoryId: 1,
+                            authorId: 1,
+                            image: $image
+                        }) {
+                            article {
+                                id
+                                title
+                                content
+                                category {
+                                    id
+                                    name
+                                }
+                                author {
+                                    id
+                                    name
+                                    email
+                                }
+                                image
+                            }
+                        }
+                    }
+                `;
+
+                try {
+                    const variables = { title, content, image, categoryId, authorId };
+                    const data = await this.graphqlRequest(mutation, variables);
+
+                    console.log('Create Article Response:', data);
+
+                    // Clear the input fields after creating an article
+                    this.setState({ title: '', content: '', image: '', categoryId: '', authorId: '' });
+                } catch (error) {
+                    console.error('Error creating article:', error);
+                }
             }
 
-            handleHumanInputChange(event) {
-                const { name, value } = event.target;
-                this.setState({
-                    [name]: value,
-                });
+            handleInputChange = (e) => {
+                this.setState({ [e.target.id]: e.target.value });
             }
 
             render() {
-                const { title, content, articleData } = this.state;
-                console.log(title)
+                const { title, content, image, categoryId, authorId } = this.state;
 
                 return (
-                    <div>
-                        <h2>okkkkkkkkkk</h2>
-                        {/* Render your form */}
+                    <div className="styled-form">
                         <form>
-                            <label>
-                                Title:
-                                <input
-                                    type="text"
-                                    name="title"
-                                    value={title}
-                                    onChange={this.handleHumanInputChange}
-                                />
-                            </label>
-                            <br />
-                            <label>
-                                Content:
-                                <textarea
-                                    name="content"
-                                    value={content}
-                                    onChange={this.handleHumanInputChange}
-                                />
-                            </label>
-                            <br />
-                            <button type="button" onClick={this.handleApiCreateArticle}>
-                                Create Article
-                            </button>
-                        </form>
+                            <label htmlFor="title">Title:</label>
+                            <input type="text" id="title" name="title" value={title} onChange={this.handleInputChange} required />
 
+                            <label htmlFor="content">Content:</label>
+                            <textarea id="content" name="content" rows="4" value={content} onChange={this.handleInputChange} required></textarea>
+
+                            {% comment %} <label htmlFor="categoryId">Category:</label>
+                            <select id="categoryId" name="categoryId" value={categoryId} onChange={this.handleInputChange} required>
+                                <option value="">Select Category</option>
+                                <option value={categoryId}>Category 1</option>
+                                <option value="2">Category 2</option>
+                                {/* Add more options as needed */}
+                            </select> {% endcomment %}
+
+                            <label htmlFor="image">Image URL:</label>
+                            <input type="text" id="image" name="image" placeholder="Paste image URL here" value={image} onChange={this.handleInputChange} />
+
+                            <button type="button" onClick={() => { this.createArticle(); }}>Create Article</button>
+                        </form>
                     </div>
                 );
             }
@@ -89,5 +231,9 @@
 
         ReactDOM.render(<Main />, document.getElementById('root'));
     </script>
+    {% include "base/home/head.html" %}
+
+    <script src="{% static "base/js/fetch.js" %}"></script>
 </body>
+
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app1.models import Article
+from app1.models import ARTICLE
 from django.shortcuts import render , get_object_or_404
 
 
@@ -42,7 +42,7 @@ def article(request):
 
 def article_detail(request, id):
     # Use get_object_or_404 to retrieve the article or return a 404 response if not found
-    article = get_object_or_404(Article, id=id)
+    article = get_object_or_404(ARTICLE, id=id)
     print(article.content)
 
     return render(request, 'base/article/article.html', {'article': article})

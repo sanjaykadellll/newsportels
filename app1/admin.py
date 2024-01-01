@@ -8,4 +8,5 @@ from django.core.checks import register
 
 admin.site.register(Category)
 admin.site.register(Author)
-admin.site.register(Article)
+admin.site.register(ARTICLE)
+admin.site.register(signup)

@@ -94,8 +94,9 @@ header {
 =======
     color: #d31b1b; }
   header .nav-fill {
-    max-width: 250px; }
+    max-width: 400px; }
     header .nav-fill a {
+       
       color: #0e0d0d; }
     header .nav-fill li:hover a {
       color: #03133a; }

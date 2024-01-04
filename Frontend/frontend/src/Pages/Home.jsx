@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import fetchArticles from '../fetchquery';
+import {fetchArticles} from '/src/fetchquery.jsx';
 
 const Home = () => {
    useEffect(() => {

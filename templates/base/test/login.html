@@ -1,6 +1,256 @@
-{% if request.user.is_authenticated %}
-  {% include "base/test/curd.html" %}
-{% else %}
-  <button className="danger" ><a href="{% url 'account_login' %}"> Login </a></button>
-  <button className="danger" ><a href="{% url 'account_signup' %}"> signup </a></button>
-{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your React App</title>
+  <!-- Include React and ReactDOM from a CDN -->
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+</head>
+<body>
+
+<!-- This is the div where your React component will be rendered -->
+<div id="root"></div>
+
+<!-- Include your React component script -->
+<script type="module">
+  </html>
+  class signupForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleHumanInputChange = this.props.handleHumanInputChange;
+    }
+    
+    render() {
+        var signup = this.props.signup;
+        return (
+            <div>
+                { fnIsDebug() && 
+                    <div>
+                        ID: 
+                        <input
+                            type="text"
+                            value={signup.id}
+                            onChange={this.handleHumanInputChange}
+                            name="id"
+                        /> <br/>
+                    </div>
+                }     
+          </div>
+        );
+      }
+  }
+  
+  class signupComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        signup:{},
+        signups:[],
+      };
+  
+      this.handleHumanInputChange = this.handleHumanInputChange.bind(this);
+      this.handleApiCreatesignup = this.handleApiCreatesignup.bind(this);
+      this.handleApiUpdatesignup = this.handleApiUpdatesignup.bind(this);
+      this.handleApiDeletesignup = this.handleApiDeletesignup.bind(this);
+  
+      this.handleUiLoadsignup = this.handleUiLoadsignup.bind(this);
+      this.handleUiDeletesignup=this.handleUiDeletesignup.bind(this);
+    }
+  
+    componentDidMount() {
+      console.log("componentDidMount", this.state);
+      this.fnsignupInitialSetState();
+      this.fetchsignups();
+    }
+  
+    fnsignupInitialSetState(){
+        this.setState({
+            signup:{
+                                    id:'',
+                    firstname:'',
+                    lastname:'',
+                    email:'',
+                    password:'',
+                    confirmpassword:'',
+  
+            }
+        });
+    }
+  
+    handleHumanInputChange(e) {
+        var signup = this.state.signup;
+        signup[e.target.name]=e.target.value;
+        this.setState({
+            signup: signup,
+        });
+    }
+  
+  
+    fetchsignups(){
+      console.log('fetchsignups',this.state);
+      signupServiceQuery({
+        state:this.state.signup,
+        fnCallback:(datac) => {
+          console.log('fetchsignups fnCallback',datac);
+          this.setState({
+            signups: datac._RESPONSE_.data.signups
+          });
+        }
+      });
+    }
+    
+    handleApiCreatesignup(e) {
+      e.preventDefault();
+      console.log('handleApiCreatesignup',this.state);
+      signupServiceSave(
+        {
+          state:this.state.signup,
+          fnCallback: (data) =>{
+            console.log("handleApiCreatesignup fnCallback", data);
+            this.fnsignupInitialSetState();
+            this.fetchsignups();  
+          }
+        }
+      )
+    }
+  
+    handleApiUpdatesignup(e) {
+      e.preventDefault();
+      console.log('handleApiUpdatesignup',this.state);
+      signupServiceSave({
+          state:this.state.signup,
+          fnCallback: (data) => {
+            console.log("handleApiUpdatesignup fnCallback", data);
+            this.fnsignupInitialSetState();
+            this.fetchsignups();  
+          }
+        });
+    }
+  
+    handleApiDeletesignup(e) {
+      e.preventDefault();
+      console.log('handleApiDeletesignup',this.state);
+      signupServiceSave({
+          state: {
+            id : this.state.signup.id,
+            markedToDelete_ : 1
+          },
+          fnCallback: (data) => {
+            console.log("handleApiDeletesignup fnCallback", data);
+            this.fetchsignups();  
+          }
+        });
+  
+    }
+  
+    handleUiLoadsignup(obj){
+        console.log("handleUiLoadsignup",obj);
+        this.setState({signup:obj});
+    } 
+  
+    handleUiDeletesignup(obj) {
+        console.log("handleUiDeletesignup", obj);
+        signupServiceSave({
+          state: {
+            id : obj.id,
+            markedToDelete_ : 1
+          },
+          fnCallback: (data) => {
+            console.log("handleUiDeletesignup fnCallback", data);
+            this.fetchsignups();
+            this.fnsignupInitialSetState();
+          }
+        });
+    }
+  
+  
+    render() {
+      const { signup } = this.state;
+      
+      return (
+        <div >
+          <h1> Create, Update signup and Delete</h1>
+          
+          <form onSubmit={this.handleApiCreatesignup}>
+          
+            id: 
+            <input
+                type="text"
+                value={signup.id}
+                onChange={this.handleHumanInputChange}
+                name="id"
+            />&nbsp; 
+    <br/>
+            firstname: 
+            <input
+                type="text"
+                value={signup.firstname}
+                onChange={this.handleHumanInputChange}
+                name="firstname"
+            />&nbsp; 
+    
+            lastname: 
+            <input
+                type="text"
+                value={signup.lastname}
+                onChange={this.handleHumanInputChange}
+                name="lastname"
+            />&nbsp; 
+    <br/>
+            email: 
+            <input
+                type="text"
+                value={signup.email}
+                onChange={this.handleHumanInputChange}
+                name="email"
+            />&nbsp; 
+    
+            password: 
+            <input
+                type="text"
+                value={signup.password}
+                onChange={this.handleHumanInputChange}
+                name="password"
+            />&nbsp; 
+    <br/>
+            confirmpassword: 
+            <input
+                type="text"
+                value={signup.confirmpassword}
+                onChange={this.handleHumanInputChange}
+                name="confirmpassword"
+            />&nbsp; 
+  
+  
+            {/* <signupForm 
+                handleHumanInputChange={this.handleHumanInputChange} 
+                signup={this.state.signup} /> */}
+  
+            <button type="submit">Create signup</button>
+            <button type="submit"onClick={this.handleApiUpdatesignup}>Update signup</button>
+            <button type="button" onClick={this.handleApiDeletesignup}>Delete signup</button>
+          </form>
+  
+          <ul style={_G_FIX_VH_STYLE_}>
+            {this.state.signups.map((obj) => (
+              <li key={obj.id}>
+                {obj.id}-{obj.name} - {obj.address}
+                <button onClick={()=>this.handleUiLoadsignup(obj)}>Edit</button>
+                <button onClick={()=>this.handleUiDeletesignup(obj)}>Delete</button>
+              </li>  
+            ))}
+          </ul>
+  
+        <StateDebugComponent display={this.state}/>         
+        </div>
+      );
+    }
+  }
+  
+  
+  ReactDOM.render(<signupComponent />, document.getElementById("root"));
+</script>
+
+</body>

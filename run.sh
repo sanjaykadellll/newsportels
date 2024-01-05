@@ -2,7 +2,7 @@
 current_dir=$(pwd)
 
 # Change to the Django project directory
-cd "C:/work/newsportels"
+cd "C:\Users\neschal\Desktop\React\Internship\newsportels"
 
 # Activate the virtual environment
 echo "...............activating++++++++++++virtual++++++++++++ env...................."

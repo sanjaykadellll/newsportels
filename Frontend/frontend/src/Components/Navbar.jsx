@@ -66,7 +66,6 @@ const Navbar = () => {
                 data-toggle="collapse"
                 aria-controls="my-nav"
                 aria-expanded="false"
-              
                 aria-label="Toggle navigation"
               >
                 <span className="bar1"></span> <span className="bar2"></span>{" "}
@@ -74,15 +73,12 @@ const Navbar = () => {
               </button>
               <div id="my-nav" className="collapse navbar-collapse">
                 <ul className="navbar-nav mx-auto">
+                  
                   <li className="nav-item">
                     <Link to="/News" className="nav-link">
-                      NEWS
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="article.html">
                       {t("news")}
-                    </a>
+                    </Link>
+                   
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#">
@@ -122,12 +118,14 @@ const Navbar = () => {
                     <Link to="/signin">
                       <button>Login</button>
                     </Link>{" "}
-                   
                   </li>
 
                   <li className="nav-item">
                     <form action="" method="POST">
-                      <div className="input-group mt-0 mx-auto" style={{width:"16px"}}>
+                      <div
+                        className="input-group mt-0 mx-auto"
+                        style={{ width: "16px" }}
+                      >
                         <div className="">
                           <img
                             src="assets/images/search-icon.png"
@@ -145,74 +143,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="row ml-0 mr-0">
-          <div className="col-md-6 pr-0">
-            <div className="card">
-              <img className="card-img" src="assets/images/left-img.jpg" alt="" />
-              <div className="card-img-overlay d-flex align-items-center justify-content-center flex-column">
-                <p>Spirituality</p>
-                <hr />
-                <h2>Free template designed by FreeHTML5.co</h2>
-                <a href="article.html" className="btn">
-                  READ MORE
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-6 pl-0">
-            <div className="card">
-              <img className="card-img" src="assets/images/right-img.jpg" alt="" />
-              <div className="card-img-overlay d-flex align-items-center justify-content-center flex-column">
-                <p>DECOR</p>
-                <hr />
-                <h2>Sed ut perspiciatis unde omnis iste natus</h2>
-                <a href="article.html" className="btn">
-                  READ MORE
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-3 pr-0 first">
-            <div className="card">
-              <img
-                className="card-img"
-                src="assets/images/architecture.png"
-                alt=""
-              />
-              <div className="card-img-overlay">
-                <h5>Architecture</h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-3 pl-0 pr-0">
-            <div className="card">
-              <img className="card-img" src="assets/images/interior.png" alt="" />/
-              <div className="card-img-overlay">
-                <h5>Interior</h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-3 pl-0 pr-0">
-            <div className="card">
-              <img className="card-img" src="assets/images/food.png" alt="" />
-              <div className="card-img-overlay">
-                <h5>Food</h5>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-md-3 pl-0 last">
-            <div className="card">
-              <img className="card-img" src="assets/images/travel.png" alt="" />
-              <div className="card-img-overlay">
-                <h5>Travel</h5>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </header>
     </>
   );

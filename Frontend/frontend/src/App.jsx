@@ -5,9 +5,7 @@ import './App.css'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import Home from './Pages/Home'
-import Hero from "./Pages/Hero";
-import Gallery from './Pages/Gallery'
-import Trending from "./Pages/Trending";
+
 import SignIn from "./Pages/SignIn";
 import ReactDOM from "react-dom/client";
 import Article from "./Pages/Article";
@@ -42,13 +40,12 @@ i18n
       <Router>
         <Navbar />
         <Routes>
+          <Route path ="/" element={<Home/>}/>
           <Route path="/News" element={<Article />} />
           <Route path="/signin" element={<SignIn />} />
         </Routes>
-        <Home />
-        <Hero />
-        <Gallery />
-        <Trending />
+    
+       
         <Footer />
       </Router>
     </>

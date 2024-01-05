@@ -1,23 +1,38 @@
-from .signupModels import *
+from .signupModels import signup 
+
 def signupSaveService(**kwargs):
     print('signupSaveService', kwargs)
     data = kwargs.get('data')
-    signupDb=None
-    print("mmmmmmmmmmmmmmmmmmmmmmmmmmm",data)
+
+    signupDb = None
+    print(data)
+    
     id = data.pop('id', 0)
     if id:
         id = int(id)
-
-    markedToDelete_ = data.pop('markedToDelete_', 0)
+    action = data.pop('action', 0)
+ 
     if id:
         signupDb = signup.objects.get(pk=id)
-        if markedToDelete_:
+        if action == 1:
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             signupDb.delete()
-            signupDb=None
-        else:
-            for key, value in data.items():
-                setattr(signupDb, key, value)
-            signupDb.save()
+            signupDb = None
+        elif action == 2: # change password
+            email = data.get("email")
+            emailDb = signup.objects.filter(email=email).first()
+            
+            if emailDb is not None:
+                signupDb.password = data.get("password")
+                print("||||||||||||||||||||||||", signupDb.password)
+                signupDb.save()
+            else:
+                print("No user found with the specified email. Password not updated.")
+            
+            signupDb = None
+  
+
     else:
         signupDb = signup.objects.create(**data)
+    
     return signupDb

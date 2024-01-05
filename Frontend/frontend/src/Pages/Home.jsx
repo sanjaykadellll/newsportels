@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react'
-import Hero from "./Hero";
-import Gallery from "./Gallery";
-import Trending from "./Trending";
-import fetchArticles from '../fetchquery';
+import {fetchArticles} from '/src/fetchquery.jsx';
 
 const Home = () => {
    useEffect(() => {

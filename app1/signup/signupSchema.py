@@ -15,7 +15,7 @@ class signupInput(graphene.InputObjectType):
     email = graphene.String()
     password = graphene.String()
     confirmpassword = graphene.String()
-    markedToDelete_ = graphene.Int()
+    action = graphene.Int()
 
 
 class signup_SaveMutation(graphene.Mutation):

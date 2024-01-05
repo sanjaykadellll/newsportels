@@ -1,27 +1,22 @@
-for mutation 
+query
 
-mutation {
-  createArticle(data: {
-    title: "New single Article"
-    content: "ok boys how you doing "
-    categoryId: 2 
-    authorId: 2   
-   
-  }) {
-    article {
-      id
-      title
-      content
-      pubDate
-      category {
-        name
-      }
-      author {
-        name
-        email
-      }
-      image
-    }
-  }
-}
+# query{
+#   allSignup{
+#     id
+#     firstname
+#   }
+# }
+
+curd
+
+# mutation {
+#   savesignup(data: {
+#     id:5
+#   markedToDelete_:1
+#     }) {
+#     signupObj{
+#       id
+#     }
+#   }
+# }
 

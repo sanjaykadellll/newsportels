@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,40 +13,64 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+const SignIn = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-// TODO remove, this demo shouldn't need to reset the theme.
+  const handleLogin = async () => {
+  
+    const query = `
+    query {
+      searchSignup( email: "${username}" ){
+        id
+        email
+        password
+      }
+    }
+    `;
 
-const defaultTheme = createTheme();
+   
+    const variables = { username };
 
-const SignIn=()=> {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+   
+    const response = await fetch("http://127.0.0.1:8001/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      
+      },
+      body: JSON.stringify({
+        query,
+        variables,
+      }),
     });
+
+    console.log(query)
+    console.log(response)
+
+    const result = await response.json();
+    // console.log(result)
+
+    if (result.data && result.data.searchSignup.password) {
+      const user = result.data.searchSignup;
+
+      if (user.password === password) {
+     
+        console.log("Sign in successful!");
+      } else {
+       
+        console.log("Please login");
+      }
+    } else {
+   
+      console.error(result.errors);
+    }
   };
 
+  const theme = createTheme();
+
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -65,7 +89,10 @@ const SignIn=()=> {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -73,11 +100,13 @@ const SignIn=()=> {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -88,6 +117,8 @@ const SignIn=()=> {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -115,9 +146,9 @@ const SignIn=()=> {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );
-}
-export default SignIn
+};
+
+export default SignIn;

@@ -9,6 +9,9 @@ class Query(ObjectType):
     all_articles = graphene.List(ArticleType)
     article = graphene.Field(ArticleType, id=graphene.Int())
     all_signup = graphene.List(signupType)
+    signup = graphene.List(signupType, id=graphene.Int())
+    search_signup = graphene.Field(signupType, email=graphene.String())
+
  
     def resolve_all_categories(self, info, **kwargs):
         return Category.objects.all()
@@ -22,8 +25,14 @@ class Query(ObjectType):
     def resolve_article(self, info, id):
         return ARTICLE.objects.get(pk=id)
 
-def resolve_all_signup(self, info, **kwargs):
-    return signup.objects.all()
+    def resolve_all_signup(self, info, **kwargs):
+        return signup.objects.all()
+
+    def resolve_signup(self, info, **kwargs):
+        return signup.objects.get(pk=id)
+
+    def resolve_search_signup(self, info, email):
+        return signup.objects.filter(email=email).first()
 
 
 
